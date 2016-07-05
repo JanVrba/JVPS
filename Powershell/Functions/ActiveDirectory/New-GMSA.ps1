@@ -4,7 +4,7 @@
 
 function New-GMSA {
 
-    [CmdletBinding()]
+     [CmdletBinding()]
     param(
 		[Parameter(Mandatory=$true)]
         [ValidateNotNullOrEmpty()] 
@@ -27,7 +27,9 @@ function New-GMSA {
 	$gMSA = ($gMSA_Prefix + '_' + $FirmName)
 	$gMSAFQDN = $gMSA + '.' + $Domain
 
-New-ADServiceAccount -Name $gMSA -DNSHostName $gMSAFQDN -PrincipalsAllowedToRetrieveManagedPassword $ADSecurityGroup
+If (-not (Test-GmsaExist $gMSA)) {
+    New-ADServiceAccount -Name $gMSA -DNSHostName $gMSAFQDN -PrincipalsAllowedToRetrieveManagedPassword $ADSecurityGroup
+}
 $NewGMSA = (Get-ADServiceAccount -Identity $gMSA).SamAccountName
 return $NewGMSA
 
