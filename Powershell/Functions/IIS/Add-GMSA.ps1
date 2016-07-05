@@ -10,11 +10,14 @@ function Add-GMSA {
            [String]
            $AppPool ,
            [Parameter()]
-           $GMSA
+           $GMSA ,
+		   [Parameter()]
+           $Domain
     ) # close param
 
+$DomainGMSA = $Domain + "\" + $GMSA
 $AppPoolModify = Get-Item IIS:\AppPools\$AppPool
-$AppPoolModify.processModel.username = $GMSA
+$AppPoolModify.processModel.username = $DomainGMSA
 $AppPoolModify | Set-Item
 $AppPoolModify.Stop()
 $AppPoolModify.Start()
