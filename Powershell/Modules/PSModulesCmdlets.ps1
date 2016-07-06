@@ -16,6 +16,10 @@ New-ModuleManifest
 
 Import-Module 
 
+# disable verbose preference from Import-Module
+
+Import-Module [name of Module ] -Verbose:$false
+
 #  This cmdlet retrieves information about the modules that have been or that can be imported into the current session.
 
 Get-Module 
@@ -42,3 +46,4 @@ $PSScriptRoot
 # Windows PowerShell uses the value of this variable when importing modules automatically and updating Help topics for modules.
 
 $env:PSModulePath
+
