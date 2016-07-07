@@ -20,7 +20,7 @@ $now = Get-Date
 
 $lastBackupFileCreationTime = (get-childitem -Path $backupFolderPath -filter "*.trn" | 
     Where-Object {-not $_.PSIsContainer} |    
-    Sort-Object -Property $_.creationtime | select -Last 1).CreationTime
+    Sort-Object Creationtime | select -Last 1).CreationTime
 
 $timeDiff = (New-Timespan $lastBackupFileCreationTime $now).TotalSeconds
 
