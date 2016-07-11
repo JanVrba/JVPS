@@ -16,17 +16,23 @@ param (
 
 ) # close param
 
-$now = Get-Date
+If (test-path $backupFolderPath\*.trn ) {
+    $now = Get-Date
+    
+    $lastBackupFileCreationTime = (get-childitem -Path $backupFolderPath -filter "*.trn" | 
+        Where-Object {-not $_.PSIsContainer} |    
+        Sort-Object Creationtime | select -Last 1).CreationTime
 
-$lastBackupFileCreationTime = (get-childitem -Path $backupFolderPath -filter "*.trn" | 
-    Where-Object {-not $_.PSIsContainer} |    
-    Sort-Object Creationtime | select -Last 1).CreationTime
+    $timeDiff = (New-Timespan $lastBackupFileCreationTime $now).TotalSeconds
 
-$timeDiff = (New-Timespan $lastBackupFileCreationTime $now).TotalSeconds
+    If ($timeDiff -gt $timespanSecs) { 
+        return $false
+    } # close if TimeDiff
+		
+    return $true
 
-If ($timeDiff -gt $timespanSecs) { 
-    return $false}
+} else {
+    Write-Error " No Backup *.trn file at $backupFolderPath exists!!!"
 
-return $true
-
+} # close If Test-path
 } # close function
