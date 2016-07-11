@@ -1,4 +1,4 @@
-# Name : AH.BackupFileCreation.Setup.ps1
+# Name : BackupFileCreation.Task.ps1
 # Date : 11/07/2016
 # Purpose : Script Set Scheduled task for check of backup file creation.
 
