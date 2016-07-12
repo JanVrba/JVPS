@@ -1,6 +1,7 @@
 # Name : Test-OctopusProjectExists.ps1
 # Date : 12/07/2016
 # Purpose : Function using RESTAPI and Method GET of to test if Octopus project already exists
+
 Function Test-OctopusProjectExists{
 
 [CmdletBinding()]
