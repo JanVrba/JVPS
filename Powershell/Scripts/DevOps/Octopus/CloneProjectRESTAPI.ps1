@@ -2,7 +2,7 @@
 # Date : 12/07/2016
 # Purpose : Clone Octopus Project using REST API and method POST
 
-$OctopusAPIKey = "API-BCNTWSJC2EQ3ULGXET6QPBGUC" 
+$OctopusAPIKey = "API-" 
 $OctopusURL = "http://localhost" 
 
 $header = @{ "X-Octopus-ApiKey" = $OctopusAPIKey }
