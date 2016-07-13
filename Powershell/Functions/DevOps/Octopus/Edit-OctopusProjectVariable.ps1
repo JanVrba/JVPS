@@ -15,9 +15,12 @@ Param(
     [Parameter()]
     [string]$projectName,
 
-    [Parameter()]
+    [Parameter(ParameterSetName=’varName’)]
     [string]$varName,
 
+    [Parameter(ParameterSetName=’varID’)]
+    [string]$varID,
+  
     [Parameter()]
     [string]$newValue
 
@@ -43,8 +46,16 @@ $project = $octoRepo.Projects.FindByName($projectName)
 #Get Project's variable set
 $variableSet = $octoRepo.VariableSets.Get($project.links.variables)
 
-#Get variable to update  
-$variable = $variableSet.Variables | Where-Object {$_.name -eq $varName}
+#Get variable to update 
+Switch($PSCmdlet.ParameterSetName){
+    "varName" { 
+        $variable = $variableSet.Variables | Where-Object {$_.name -eq $varName}
+     } # close switch varName
+
+     "varID" {
+        $variable = $variableSet.Variables | Where-Object {$_.Id -eq $varID}
+     } # close switch varID
+} # close switch
 
 #Update variable
 $variable.Value = $newValue
