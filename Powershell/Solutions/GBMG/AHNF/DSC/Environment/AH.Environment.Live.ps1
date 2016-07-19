@@ -3,39 +3,39 @@
 #
 
 $Servers =  @(
-	@{ nodename = 'wcr2' }
-	#@{ nodename = 'w1r2' }
-	#@{ nodename = 'w2r2' }
-	#@{ nodename = 'w3r2' }
+	@{ nodename = '' }
+	#@{ nodename = '' }
+	#@{ nodename = '' }
+	#@{ nodename = '' }
 )
 
-$ADSecurityGroup = 'Webservers'
-$DNS = 'intranet.gbp.co.uk'
-$gMSAPrefix = 'A4L'
-$AppPool = 'Apply4law'
-$ADusersGroup = "Apply4Law ISUR Users"
-$ManagementHost = "wcr2"
+$ADSecurityGroup = ''
+$DNS = ''
+$gMSAPrefix = ''
+$AppPool = ''
+$ADusersGroup = ""
+$ManagementHost = ""
 
 # Run SQL scripts variables
 
-$SQLDomain = 'GBP'
-$SQLserverLive = 'ws-ah'
-$SQLserverDev = 'dev-ws'
-$DBMaster = 'Master'
+$SQLDomain = ''
+$SQLserverLive = ''
+$SQLserverDev = ''
+$DBMaster = ''
 
 <# copy shared configuration variables
 
-$ManagementHost = "wcr2"
+$ManagementHost = ""
 $NlbInterface = ""
-$webservers = @("wcr2") # ,"w1r2","w2r2")
-$NlbClusterIP = "192.168.200.246" #>
+$webservers = @("") # ,"","")
+$NlbClusterIP = "" #>
 
 # Octopus Deploy variables
 
-$ProjectTemplateID = "Projects-17"
-$projectTemplateName = "COV AllHires Graduate Deploy"
-$ProjectGroupID = "ProjectGroups-21"
-$LifecycleId = "Lifecycles-22"
-$OctopusAPIKey = "API-HUPOX1MN7ZA2X7ZAK9MGEM7PKY" 
-$OctopusURL = "http://octopus1" 
+$ProjectTemplateID = ""
+$projectTemplateName = ""
+$ProjectGroupID = ""
+$LifecycleId = ""
+$OctopusAPIKey = "" 
+$OctopusURL = "" 
 
