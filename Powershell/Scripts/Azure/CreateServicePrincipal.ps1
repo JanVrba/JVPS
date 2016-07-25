@@ -3,7 +3,7 @@
 param
 (
     [Parameter(Mandatory=$true, HelpMessage="Enter Azure Subscription name. You need to be Subscription Admin to execute the script")]
-    [string] $subscriptionName,
+    [string] $subscriptionID,
 
     [Parameter(Mandatory=$true, HelpMessage="Provide a password for SPN application that you would create")]
     [string] $password,
@@ -20,6 +20,7 @@ $newguid = [guid]::NewGuid()
 $displayName = [String]::Format("VSO.{0}.{1}", $userName, $newguid)
 $homePage = "http://" + $displayName
 $identifierUri = $homePage
+$tenantId = "49609590-02a8-49e5-9cea-83476ab25461"
 
 
 #Initialize subscription
@@ -31,9 +32,9 @@ if ([String]::IsNullOrEmpty($isAzureModulePresent) -eq $true)
 }
 
 Import-Module -Name AzureRM.Profile
-Write-Output "Provide your credentials to access Azure subscription $subscriptionName" -Verbose
-Login-AzureRmAccount -SubscriptionName $subscriptionName
-$azureSubscription = Get-AzureRmSubscription -SubscriptionName $subscriptionName
+Write-Output "Provide your credentials to access Azure subscription $subscriptionID" -Verbose
+Login-AzureRmAccount -SubscriptionId $subscriptionID -TenantId $tenantId
+$azureSubscription = Get-AzureRmSubscription -SubscriptionId $subscriptionID -TenantId $tenantId
 $connectionName = $azureSubscription.SubscriptionName
 $tenantId = $azureSubscription.TenantId
 $id = $azureSubscription.SubscriptionId
