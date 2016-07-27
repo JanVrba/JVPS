@@ -1,3 +1,4 @@
+# info: https://azure.microsoft.com/en-gb/documentation/articles/vs-azure-tools-resource-groups-how-script-works/
 #Requires -Version 3.0
 #Requires -Module AzureRM.Resources
 #Requires -Module Azure.Storage
