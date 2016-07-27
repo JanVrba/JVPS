@@ -1,0 +1,90 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appService_gbmgvatapi_name": {
+      "type": "string"
+    },
+    "appServicePlan_appSP_location": {
+      "type": "string"
+    },
+    "appServicePlan_appSP_name": {
+      "type": "string"
+    },
+    "appServicePlan_appSP_resourceGroup": {
+      "type": "string"
+    },
+      "_artifactsLocation": {
+          "type": "string"
+      },
+      "_artifactsLocationSasToken": {
+          "type": "securestring"
+      },
+      "GBMG.P360.Finance.VATAPI.WebDeployPackageFolder": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "WebDeploy package location. This path is relative to the _artifactsLocation parameter"
+          }
+      },
+      "GBMG.P360.Finance.VATAPI.WebDeployPackageFileName": {
+          "type": "string",
+          "minLength": 1,
+          "metadata": {
+              "description": "Name of the webdeploy package"
+          }
+      }
+  },
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "kind": "api",
+            "name": "[parameters('appService_gbmgvatapi_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "[parameters('appServicePlan_appSP_location')]",
+            "tags": {
+                "[concat('hidden-related:', resourceId(parameters('appServicePlan_appSP_resourceGroup'),'Microsoft.Web/serverfarms', parameters('appServicePlan_appSP_name')))]": "empty"
+            },
+            "properties": {
+                "name": "[parameters('appService_gbmgvatapi_name')]",
+                "serverFarmId": "[resourceId(parameters('appServicePlan_appSP_resourceGroup'),'Microsoft.Web/serverfarms', parameters('appServicePlan_appSP_name'))]",
+                "kind": "api"
+            },
+            "resources": [
+                {
+                    "type": "config",
+                    "name": "web",
+                    "apiVersion": "2015-08-01",
+                    "properties": {
+                        "apiDefinition": {
+                            "url": "[concat('https://', reference(resourceId('Microsoft.Web/sites', parameters('appService_gbmgvatapi_name'))).hostnames[0], '/swagger/docs/v1')]"
+                        }
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('appService_gbmgvatapi_name'))]"
+                    ]
+                },
+                {
+                    "name": "MSDeploy",
+                    "type": "extensions",
+                    "location": "[parameters('appServicePlan_appSP_location')]",
+                    "apiVersion": "2015-08-01",
+                    "dependsOn": [
+                        "[concat('Microsoft.Web/sites/', parameters('appService_gbmgvatapi_name'))]"
+                    ],
+                    "tags": {
+                        "displayName": "GBMG.P360.Finance.VATAPI.WebDeploy"
+                    },
+                    "properties": {
+                      "packageUri": "[concat(parameters('_artifactsLocation'), '/', parameters('GBMG.P360.Finance.VATAPI.WebDeployPackageFolder'), '/', parameters('GBMG.P360.Finance.VATAPI.WebDeployPackageFileName'), parameters('_artifactsLocationSasToken'))]",
+                        "dbType": "None",
+                        "connectionString": " ",
+                        "setParameters": {
+                            "IIS Web Application Name": "[parameters('appService_gbmgvatapi_name')]"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

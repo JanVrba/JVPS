@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appService_gbmgvatapi_name": {
+      "value": "gbmgvatapi"
+    },
+    "appServicePlan_appSP_location": {
+      "value": "West Europe"
+    },
+    "appServicePlan_appSP_name": {
+      "value": "appSP"
+    },
+    "appServicePlan_appSP_resourceGroup": {
+      "value": "GBMG.Apps"
+    },
+    "GBMG.P360.Finance.VATAPI.WebDeployPackageFolder": {
+      "value": "."
+    },
+    "GBMG.P360.Finance.VATAPI.WebDeployPackageFileName": {
+      "value": "GBMG.P360.Finance.VATAPI.API.zip"
+    },
+    
+     "_artifactsLocation": {
+      "value": null
+    },
+
+    "_artifactsLocationSasToken": {
+      "value": null
+    }
+
+  }
+}
+
