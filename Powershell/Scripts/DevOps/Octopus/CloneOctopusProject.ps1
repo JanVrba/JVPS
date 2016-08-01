@@ -7,49 +7,54 @@ param(
 		[Parameter()]
         [ValidateNotNullOrEmpty()] 
 		[String]
-		$OctopusURL ,
-        
-        [Parameter()]
-        [ValidateNotNullOrEmpty()] 
-		[String]
-		$OctopusAPIKey
-
+		$firmName
 ) # close param
+
+# ---------------------------------------------
+# Variables used from AH.Environment.[Env] data
+# 
+# $ProjectTemplateID
+# $ProjectGroupID
+# $LifecycleId
+# $OctopusAPIKey
+# $OctopusURL
+#
+# ---------------------------------------------
+# ---------------------------------------------
+# Function used from AHModule
+# 
+# Test-OctopusProjectExists
+# 
 
 $header = @{ "X-Octopus-ApiKey" = $OctopusAPIKey }
 
-
+$newProjectSlug = $firmName + "-allhires-graduate-deploy"
 
 Write-Information "[CloneOctopusProject.ps1] Starting ..."
-If (-not(Test-OctopusProjectExists -OctopusUrl $OctopusURL -ApiKey $OctopusAPIKey -projectSlug )) {
+If (-not(Test-OctopusProjectExists -OctopusUrl $OctopusURL -ApiKey $OctopusAPIKey -projectSlug $newProjectSlug)) {
 
-	$body = @'
-	{
-		"Id": "*",
-		"VariableSetId": "variableset-PROJECTID",
-		"DeploymentProcessId": "deploymentprocess-PROJECTID",
-		"Description": "",
-		"IncludedLibraryVariableSetIds":[],
-		"IsDisabled": false,
-		"Name": "COV ALLHIRES GRADUATE DEPLOY",
-		"Slug": "COV ALLHIRES GRADUATE DEPLOY",  
-		"DefaultToSkipIfAlreadyInstalled": false,
-		"ProjectGroupId": "PROJECTGROUP",
-		"LifecycleId": "LIFECYCLE"
-	}
-'@
+    $body = @{
+        Id = "*"
+        VariableSetId = "variableset-$projectTemplateID"
+        DeploymentProcessId = "deploymentprocess-$projectTemplateID"
+        Description =  ""
+	    IncludedLibraryVariableSetIds = ""
+	    IsDisabled = "false"
+	    Name = "$firmName AllHires Graduate Deploy"
+	    Slug = "$firmName AllHires Graduate Deploy"
+	    DefaultToSkipIfAlreadyInstalled = "false"
+	    ProjectGroupId = "$projectGroupID"
+        LifecycleId = "$lifecycleID"
+    }
+    
 
-	$newBody = $body -creplace "PROJECTID" , $projectTemplateID
-	$newBody = $newBody -creplace "COV", $firmName
-	$newBody = $newBody -creplace "PROJECTGROUP", $projectGroupID
-	$newBody = $newBody -creplace "LIFECYCLE", $lifecycleID
-
-	$uri = "$OctopusURL/api/projects?clone=" + $ProjectTemplateID
+    $uri = "$OctopusURL/api/projects?clone=" + $ProjectTemplateID
 	Write-Information "[CloneOctopusProject.ps1] Cloning Octopus Project with new name $newProjectSlug ..."
-	Invoke-RestMethod $uri -Method Post -Headers $header -Body $newbody | Out-Null
+	Invoke-RestMethod $uri -Method Post -Headers $header -Body ($body | ConvertTo-Json -Depth 1) | Out-Null
 	If (Test-OctopusProjectExists -OctopusUrl $OctopusURL -ApiKey $OctopusAPIKey -projectSlug $newProjectSlug) {
 		Write-Information "[CloneOctopusProject.ps1] Octopus Project $newProjectSlug created."
 	} # clone project
 } else {
 	Write-Warning "Octopus Project $newProjectSlug already exists!"
+	Break
 }
