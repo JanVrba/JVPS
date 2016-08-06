@@ -6,6 +6,10 @@ Git Init
 
 git clone https://github.com/JanVrba/JVPS.git
 
+//create remote
+
+git remote add origin https://janvrba.visualstudio.com/AzureWebApp/_git/jsQueryEngine
+
 //Push to Remote
 
 git push -u origin master
