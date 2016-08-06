@@ -1,0 +1,12 @@
+Initializtion
+
+Git Init
+
+Clone remote
+
+git clone https://github.com/JanVrba/JVPS.git
+
+Push to Remote
+
+git push -u origin master
+
