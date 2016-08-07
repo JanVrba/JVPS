@@ -20,8 +20,25 @@ namespace ConsoleApplication1
                           where car.Name == "Ferrari"
                           select car;
 
-            // using LINQ method
-            // var ferrari = myCars.Where(kar => kar.Name == "Ferrari");
+            /*  using orderby query
+            var orderedCars = from car in myCars
+                              orderby car.Name ascending
+                              select car;
+            */
+
+            /* using LINQ method
+            Method Where
+            var ferrari = myCars.Where(kar => kar.Name == "Ferrari");
+            Method orderby
+            var orderedCars = myCars.OrderBy(c => c.Name); 
+            Method Exists
+            Console.WriteLine(myCars.Exists(p => p.Name == "Lamborgini"));
+
+            /*  using orderby
+            var orderedCars = from car in myCars
+                              orderby car.Name ascending
+                              select car;
+            */
 
             foreach (var car in ferrari)
             {
