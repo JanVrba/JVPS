@@ -20,6 +20,14 @@ namespace ConsoleApplication1
                           where car.Name == "Ferrari"
                           select car;
 
+            // using LINQ method
+            // var ferrari = myCars.Where(kar => kar.Name == "Ferrari");
+
+            foreach (var car in ferrari)
+            {
+                Console.WriteLine("{0}", car.Name);
+            }
+
             foreach (var car in ferrari)
             {
                 Console.WriteLine("{0}", car.Name);
