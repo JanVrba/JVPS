@@ -9,7 +9,8 @@ $sourceFolderPath = "\\cc1\Bin\GBP\NuGet\master"
 $archiveFolderPath = "\\cc1\Bin\GBP\NuGet\Archive"
 $retentionTimeDays = 31
 
-$packagesGroups = Get-ChildItem $sourceFolderPath | ForEach-Object {($_.Name.Split(".")[0] + $_.Name.Split(".")[1])} | group
+$packagesGroups = Get-ChildItem $sourceFolderPath | 
+ForEach-Object {($_.Name.Split(".")[0] + $_.Name.Split(".")[1])} | group
 
 $packagesGroups | Where-Object {$_.count -gt 5} | sort-object Count -Descending
 
