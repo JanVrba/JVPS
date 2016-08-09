@@ -1,3 +1,11 @@
+Tools:
+
+Pricing Calculator:
+
+https://azure.microsoft.com/en-us/pricing/calculator/
+
+App Services :
+
 Debug console :
 
 https://[name of app].scm.azurewebsites.net/DebugConsole
