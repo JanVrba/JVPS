@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+
+    "appServicePlanName": {
+      "value": "P360WebMonitoringServicePlan"
+    },
+    "webSiteName": {
+      "value": "gbmgp360monitoring"
+    },
+    "appServicePlan_location": {
+      "value": "northeurope"
+    },
+    "_artifactsLocation": {
+      "value": null
+    },
+    "_artifactsLocationSasToken": {
+      "value": null
+    },
+    "WebDeployPackageFolder": {
+      "value": "."
+    },    
+    "WebDeployPackageFileName": {
+      "value": "Monitoring.zip"
+    }
+
+  }
+}
