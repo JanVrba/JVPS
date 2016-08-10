@@ -1,0 +1,26 @@
+//Initializtion
+
+Git Init
+
+//Clone remote
+
+git clone https://github.com/JanVrba/JVPS.git
+
+//create remote
+
+git remote add origin https://janvrba.visualstudio.com/AzureWebApp/_git/jsQueryEngine
+
+//Push to Remote
+
+git push -u origin master
+
+//set identity details
+
+git config --global user.email "jan.vrba@gmx.co.uk"
+
+git config --global user.name "Jan Vrba"
+
+//commit changes
+
+git add .
+git commit -m "message"

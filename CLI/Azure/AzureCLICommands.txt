@@ -1,0 +1,16 @@
+Login to Azure
+
+Azure Login
+
+Create git remote for WebApp
+
+Azure site create --git <appName>
+
+Browse site from Git Repo
+
+Azure site browse
+
+
+
+
+
