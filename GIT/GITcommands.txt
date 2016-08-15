@@ -23,4 +23,9 @@ git config --global user.name "Jan Vrba"
 //commit changes
 
 git add .
+
 git commit -m "message"
+
+//delete folder
+
+git rm -rf directory
