@@ -29,3 +29,15 @@ git commit -m "message"
 //delete folder
 
 git rm -rf directory
+
+// set new remote
+
+git remote set-url origin git: [URL]
+
+// remove remote
+
+git remote remove origin
+
+// check remote url
+
+git config --get remote.origin.url
