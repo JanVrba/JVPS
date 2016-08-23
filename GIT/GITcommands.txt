@@ -41,3 +41,7 @@ git remote remove origin
 // check remote url
 
 git config --get remote.origin.url
+
+// create branch
+
+git checkout -b iss53
