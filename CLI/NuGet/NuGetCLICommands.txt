@@ -1,0 +1,3 @@
+-- create nuspec
+
+nuget spec MyAssembly.dll
