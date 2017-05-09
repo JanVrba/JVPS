@@ -2,10 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Powershell",
-    "\\Powershell\\Commands\\DevOps\\Octopus",
-    "\\Powershell\\Projects",
-    "\\Powershell\\Projects\\PowerShellProject_Test"
+    "\\Powershell\\Scripts",
+    "\\Powershell\\Scripts\\SQL"
   ],
-  "SelectedNode": "\\Powershell\\Projects",
+  "SelectedNode": "\\Powershell\\Scripts\\SQL\\RestoreFullRecoveryCheck.ps1",
   "PreviewInSolutionExplorer": false
 }
