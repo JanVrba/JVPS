@@ -13,6 +13,7 @@ Install-Module AzureRM
 Import-Module AzureRM -Verbose
 
 # Login to Azure
+# before  : Login-AzureRmAccount ,  Save-AzureRmContext -Path “C:\Temp\AzureProfile.json”
 
 $AzureProfile = "C:\Temp\AzureProfile.json"
 
