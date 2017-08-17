@@ -8,6 +8,7 @@ param(
 ) # close param
 
 # Azure RM module
+# if fail : Save-Module -Name AzureRM -Path <path> - modules folder
 
 Install-Module AzureRM
 Import-Module AzureRM -Verbose
