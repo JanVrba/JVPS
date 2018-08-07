@@ -11,8 +11,8 @@
 #
 #
 #Specify tenant admin and site URL  
-$User = "crmusrmx01sr@cemex.onmicrosoft.com"  
-$Password = '2018Cemex'  
+$User = "xxxxxx"  
+$Password = 'xxxxxx'
 $SiteURL = "https://cemex.sharepoint.com/sites/AutomationTestReports/"
 $Folder = ".\TestResults\csv\*.csv"  
 #Path where you want to Copy  
